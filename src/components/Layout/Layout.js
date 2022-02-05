@@ -20,6 +20,9 @@ const Layout = () => {
           </nav>
         </div>
       </header>
+      <main>
+        {/* <container className={style.container}></container> */}
+      </main>
       <Outlet />
     </>
   );

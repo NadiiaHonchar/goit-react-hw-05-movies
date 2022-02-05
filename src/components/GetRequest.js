@@ -5,7 +5,7 @@ import axios from "axios";
 // const API_KEY =
 //   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWI1Mjk2NmIxNzEwNjk4MmI1ZmFhZjhmYTY1NWIzYiIsInN1YiI6IjYxZjliMDNjNWMzMjQ3MDA0NTRlNDI3MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cwsCflzdAcLSiwpn5shAUOjzcnGC1PhUyUbQP-Hw9V0";
 const API_KEY ='69b52966b17106982b5faaf8fa655b3b';
-  const GetRequest =(query, page)=>{
+  const GetRequest =(query, get)=>{
     // console.log('try',query);
     // const [loading, setLoading] = useState(false);
     const [error,setError] = useState('');
@@ -19,7 +19,7 @@ const API_KEY ='69b52966b17106982b5faaf8fa655b3b';
         try {
           const response = await axios.get(
             // `https://pixabay.com/api/?key=${API_KEY}&q=${searchName}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${per_page}`
-            `https://api.themoviedb.org/3/${query}?api_key=${API_KEY}&page=${page}`
+            `https://api.themoviedb.org/3/${query}?api_key=${API_KEY}&${get}`
             // `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=1`
 
           );
@@ -54,7 +54,7 @@ const API_KEY ='69b52966b17106982b5faaf8fa655b3b';
         }
         
     //   }, [searchName, page]);
-    }, [query, page]);
+    }, [query, get]);
     // console.log('dateResponse',dateResponse)
     return dateResponse;
 
