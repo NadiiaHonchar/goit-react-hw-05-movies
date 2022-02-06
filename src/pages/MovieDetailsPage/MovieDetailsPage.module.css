@@ -1,0 +1,20 @@
+.card {
+  display: flex;
+  padding: 5px;
+  border-bottom: 1px solid green;
+}
+
+.image {
+  max-width: 300px;
+}
+
+.cardText {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  max-width: 50%;
+}
+.cardTextAddInfo {
+  border-bottom: 1px solid green;
+  display: list-item;
+}

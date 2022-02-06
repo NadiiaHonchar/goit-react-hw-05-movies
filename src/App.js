@@ -1,29 +1,41 @@
-import { Router, Route, Link, Routes } from "react-router-dom";
-
-import  HomePage  from "./pages/HomePage";
-import  MoviesPage  from "./pages/MoviesPage";
+import { Route, Routes } from "react-router-dom";
+import React from "react";
 import Layout from "./components/Layout";
-// import GetRequest from './components/GetRequest'
-// import {NotFoundPage} from './pages/NotFoundPage';
 
-// const IPI_KEY =
-//   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWI1Mjk2NmIxNzEwNjk4MmI1ZmFhZjhmYTY1NWIzYiIsInN1YiI6IjYxZjliMDNjNWMzMjQ3MDA0NTRlNDI3MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cwsCflzdAcLSiwpn5shAUOjzcnGC1PhUyUbQP-Hw9V0";
-// const query = 'trending/all/day';
-// const page = 1;
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const MoviesPage = React.lazy(() => import("./pages/MoviesPage"));
+const MovieDetailsPage = React.lazy(() => import("./pages/MovieDetailsPage"));
 
 export default function App() {
   return (
     <>
-      {/* <header>
-            <Link to="/">Home</Link>
-            <Link  to="/movies">Movies</Link>
-        </header> */}
       <Routes>
-          <Route path = "/" element = {<Layout/>}>
-            <Route index element={<HomePage />} />
-            <Route path="movies" element={<MoviesPage />} />
-            <Route path="*" element={<HomePage />} />
-            {/* {GetRequest(query,page)} */}
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <React.Suspense fallback={<h1>Loading User Route</h1>}>
+                <HomePage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="movies/"
+            element={
+              <React.Suspense fallback={<h1>Loading User Route</h1>}>
+                <MoviesPage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="movies/:id/*"
+            element={
+              <React.Suspense fallback={<h1>Loading User Route</h1>}>
+                <MovieDetailsPage />
+              </React.Suspense>
+            }
+          />
+          <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>
     </>

@@ -1,0 +1,25 @@
+.actorsCard {
+  padding: 10px;
+  display: flex;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.actorsList {
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid yellowgreen;
+  border-radius: 10px;
+}
+
+.actorsList:not(:last-child) {
+  margin-right: 20px;
+}
+
+.image {
+  max-width: 200px;
+}
+
+.widthText {
+  max-width: 200px;
+}

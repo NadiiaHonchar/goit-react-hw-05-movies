@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { ImSearch } from "react-icons/im";
-// import { toast } from "react-toastify";
 import style from "./SearchBar.module.css";
 
 export default function Searchbar({ onSubmit }) {
@@ -15,14 +14,7 @@ export default function Searchbar({ onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchName.trim() === "") {
-    //   toast.warn("please enter a request name", {
-    //     position: "top-center",
-    //     autoClose: 3000,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     progress: 1,
-    //   });
-    alert("please enter a request name");
+      alert("please enter a request name");
       return;
     }
     onSubmit(searchName);
@@ -35,25 +27,23 @@ export default function Searchbar({ onSubmit }) {
 
   return (
     <>
-     
-        <form className={style.SearchForm} onSubmit={handleSubmit}>
-          <button type="submit" className={style.SearchFormButton}>
-            {" "}
-            <ImSearch />
-            <span className={style.SearchFormButtonLabel}>Search</span>
-          </button>
+      <form className={style.SearchForm} onSubmit={handleSubmit}>
+        <button type="submit" className={style.SearchFormButton}>
+          {" "}
+          <ImSearch />
+          <span className={style.SearchFormButtonLabel}>Search</span>
+        </button>
 
-          <input
-            className={style.SearchFormInput}
-            type="text"
-            autoComplete="off"
-            autoFocus={true}
-            placeholder="Enter movie name"
-            value={searchName}
-            onChange={handleInputChange}
-          />
-        </form>
-      
+        <input
+          className={style.SearchFormInput}
+          type="text"
+          autoComplete="off"
+          autoFocus={true}
+          placeholder="Enter movie name"
+          value={searchName}
+          onChange={handleInputChange}
+        />
+      </form>
     </>
   );
 }

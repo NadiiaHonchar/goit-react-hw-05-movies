@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import GetRequest from "../components/GetRequest";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const [page, setPage] = useState(1);
   const [results, setResults] = useState(() => []);
   const query = "trending/all/day";
-  const get = `page=${page}`
-  const newResults = GetRequest(query, get);
-  console.log('newResults',newResults);
-  
+  const get = `page=${page}`;
+  const typeQuery = "general";
+  const newResults = GetRequest(query, get, typeQuery);
+
   useEffect(() => {
     setResults((prevResults) => [...prevResults, ...newResults]);
   }, [newResults]);
@@ -24,10 +25,12 @@ export default function HomePage() {
       <ul>
         {results &&
           results.map(({ original_title, id, original_name }) => (
-            <li key={id}>{original_title || original_name}</li>
+            <Link key={id} to={`/movies/${id}`}>
+              <li>{original_title || original_name}</li>
+            </Link>
           ))}
       </ul>
-      <Button onLoadMore={onLoadMore} />
+      <Button onLoadMore={onLoadMore} text="Load more" />
     </>
   );
 }
