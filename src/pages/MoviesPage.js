@@ -10,7 +10,7 @@ export default function MoviesPage() {
   const [results, setResults] = useState(() => []);
   const { id: queryId } = useParams();
 
-  const query = `search/movie/`;
+  const query = `search/movie`;
   const get = searchName ? `query=${searchName}&page=${page}` : "";
   const typeQuery = "general";
   const newResults = GetRequest(query, get, typeQuery);

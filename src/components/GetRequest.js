@@ -24,7 +24,7 @@ const GetRequest = (query, get, typeQuery) => {
     } catch (error) {
       setError(error);
     }
-  }, [query, get]);
+  }, [query, get, typeQuery]);
 
   return dateResponse;
 };
