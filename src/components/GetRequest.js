@@ -7,23 +7,28 @@ const GetRequest = (query, get, typeQuery) => {
   const [error, setError] = useState("");
   const [dateResponse, setDateResponse] = useState(() => []);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!query || !get) {
       return;
     }
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/${query}?api_key=${API_KEY}&${get}`
-      );
-      if (typeQuery === "general") {
-        setDateResponse(response.data.results);
+    async function getUser() {
+      try {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/${query}?api_key=${API_KEY}&${get}`
+        );
+        if (typeQuery === "general") {
+          setDateResponse(response.data.results);
+          console.log(response.data.results);
+        }
+        if (typeQuery === "details") {
+          setDateResponse(response.data);
+          console.log(response.data);
+        }
+      } catch (error) {
+        setError(error);
       }
-      if (typeQuery === "details") {
-        setDateResponse(response.data);
-      }
-    } catch (error) {
-      setError(error);
     }
+    getUser();
   }, [query, get, typeQuery]);
 
   return dateResponse;
