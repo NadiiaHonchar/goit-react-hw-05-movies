@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import GetRequest from "../components/GetRequest";
 import Button from "../components/Button";
@@ -7,8 +7,7 @@ import { useState, useEffect } from "react";
 export default function MoviesPage() {
   const [searchName, setSearchName] = useState("");
   const [page, setPage] = useState(1);
-  const [results, setResults] = useState(() => []);
-  const { id: queryId } = useParams();
+  const [results, setResults] = useState(() => []);  
 
   const query = `search/movie`;
   const get = searchName ? `query=${searchName}&page=${page}` : "";
@@ -34,7 +33,7 @@ export default function MoviesPage() {
       <ul>
         {results &&
           results.map(({ original_title, id, original_name }) => (
-            <Link key={id} to={`/movies/${queryId}`}>
+            <Link key={id} to={`/movies/${id}`}>
               <li>{original_title || original_name}</li>
             </Link>
           ))}
