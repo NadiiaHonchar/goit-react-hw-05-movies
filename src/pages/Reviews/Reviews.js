@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import GetRequest from "../../components/GetRequest";
 import { useState, useEffect } from "react";
-import style from "./Reviews.module.css";
 
 export default function Reviews() {
   const { id: queryId } = useParams();
@@ -10,7 +9,7 @@ export default function Reviews() {
   const get = 1;
   const typeQuery = "details";
   const newResults = GetRequest(query, get, typeQuery);
-  const imageURL = "https://image.tmdb.org/t/p/w500";
+  // const imageURL = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
     setResults(newResults.results);

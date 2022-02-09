@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 const API_KEY = "69b52966b17106982b5faaf8fa655b3b";
 const GetRequest = (query, get, typeQuery) => {
-  const [error, setError] = useState("");
   const [dateResponse, setDateResponse] = useState(() => []);
 
   useEffect(() => {
@@ -18,14 +17,12 @@ const GetRequest = (query, get, typeQuery) => {
         );
         if (typeQuery === "general") {
           setDateResponse(response.data.results);
-          console.log(response.data.results);
         }
         if (typeQuery === "details") {
           setDateResponse(response.data);
-          console.log(response.data);
         }
       } catch (error) {
-        setError(error);
+        console.log(error);
       }
     }
     getUser();
