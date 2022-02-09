@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import Layout from "./components/Layout";
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
@@ -38,6 +39,14 @@ export default function App() {
           <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+      />
     </>
   );
 }

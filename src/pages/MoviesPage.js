@@ -39,7 +39,7 @@ export default function MoviesPage() {
             </Link>
           ))}
       </ul>
-      {searchName && <Button onLoadMore={onLoadMore} text="Load more" />}
+      {searchName && <Button onLoadMore={onLoadMore} text="Load more" />}      
     </>
   );
 }

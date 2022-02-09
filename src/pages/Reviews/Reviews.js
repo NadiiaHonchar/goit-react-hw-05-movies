@@ -8,8 +8,7 @@ export default function Reviews() {
   const query = queryId ? `movie/${queryId}/reviews` : "";
   const get = 1;
   const typeQuery = "details";
-  const newResults = GetRequest(query, get, typeQuery);
-  // const imageURL = "https://image.tmdb.org/t/p/w500";
+  const newResults = GetRequest(query, get, typeQuery);  
 
   useEffect(() => {
     setResults(newResults.results);

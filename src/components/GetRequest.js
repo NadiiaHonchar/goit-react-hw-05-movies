@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 
 const API_KEY = "69b52966b17106982b5faaf8fa655b3b";
@@ -22,7 +24,9 @@ const GetRequest = (query, get, typeQuery) => {
           setDateResponse(response.data);
         }
       } catch (error) {
-        console.log(error);
+        return toast(
+          `Sorry, an error ${error} has occurred. Please try again.`
+        );
       }
     }
     getUser();
