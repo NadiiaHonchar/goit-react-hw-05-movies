@@ -11,13 +11,13 @@ export default function Reviews() {
   const newResults = GetRequest(query, get, typeQuery);  
 
   useEffect(() => {
-    setResults(newResults.results);
+    setResults(newResults.results);    
   }, [newResults]);
 
   return (
     <>
       <div>
-        {!results && <p>We don't have any reviews for this movie.</p>}
+        {results && <h3>We don't have any reviews for this movie.</h3>}
         {results &&
           results.map(({ author, content, id }) => (
             <div key={id}>

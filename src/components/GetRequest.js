@@ -23,6 +23,7 @@ const GetRequest = (query, get, typeQuery) => {
         if (typeQuery === "details") {
           setDateResponse(response.data);
         }
+        
       } catch (error) {
         return toast(
           `Sorry, an error ${error} has occurred. Please try again.`
