@@ -6,11 +6,14 @@ import {
   Link,  
 } from "react-router-dom";
 import GetRequest from "../../components/GetRequest";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../components/Button";
 import style from "./MovieDetailsPage.module.css";
-import Cast from "../Cast/Cast";
-import Reviews from "../Reviews";
+// import Cast from "../Cast";
+// import Reviews from "../Reviews";
+// const MovieDetailsPage = React.lazy(() => import("./pages/MovieDetailsPage"));
+const Cast = React.lazy(() => import("../Cast"));
+const Reviews = React.lazy(() => import("../Reviews"));
 
 export default function MovieDetailsPage({ searchName }) {
   const { id: queryId } = useParams();
@@ -69,9 +72,27 @@ export default function MovieDetailsPage({ searchName }) {
             </Link>
           </li>
         </ul>
-        <Routes>
+        {/* <Routes>
           <Route path=":id/cast" element={<Cast />} />
           <Route path=":id/reviews" element={<Reviews />} />
+        </Routes> */}
+        <Routes>
+        <Route
+            path=":id/cast"
+            element={
+              <React.Suspense fallback={<h1>Loading User Route</h1>}>
+                <Cast />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path=":id/reviews"
+            element={
+              <React.Suspense fallback={<h1>Loading User Route</h1>}>
+                <Reviews />
+              </React.Suspense>
+            }
+          />
         </Routes>
       </div>
     </>

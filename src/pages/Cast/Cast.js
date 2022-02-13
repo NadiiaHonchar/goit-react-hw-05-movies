@@ -19,7 +19,7 @@ export default function Cast() {
   return (
     <>
       <div className={style.actorsCard}>
-        {!results && <h3>We don't have any cast for this movie.</h3>}
+        {(!results||results.length=== 0) && <h3>We don't have any cast for this movie.</h3>}
         {results &&
           results.map(
             ({ name, original_name, character, profile_path, id }) => (
