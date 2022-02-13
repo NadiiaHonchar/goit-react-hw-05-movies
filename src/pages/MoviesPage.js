@@ -1,4 +1,4 @@
-import { Link} from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import GetRequest from "../components/GetRequest";
 import Button from "../components/Button";
@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
 export default function MoviesPage() {
   const [searchName, setSearchName] = useState("");
   const [page, setPage] = useState(1);
-  const [results, setResults] = useState(() => []);  
+  const [results, setResults] = useState(() => []);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const query = `search/movie`;
   const get = searchName ? `query=${searchName}&page=${page}` : "";
@@ -20,8 +21,12 @@ export default function MoviesPage() {
 
   const addSearchName = (searchName) => {
     setResults([]);
+    setSearchParams({ query: searchName });
     setSearchName(searchName);
   };
+
+  const queryName = searchParams.get("query");
+  useEffect(() => queryName && setSearchName(queryName), [queryName]);
 
   const onLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
@@ -38,7 +43,7 @@ export default function MoviesPage() {
             </Link>
           ))}
       </ul>
-      {searchName && <Button onLoadMore={onLoadMore} text="Load more" />}      
+      {searchName && <Button onLoadMore={onLoadMore} text="Load more" />}
     </>
   );
 }

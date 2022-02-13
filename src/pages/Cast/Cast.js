@@ -30,7 +30,11 @@ export default function Cast() {
                   alt={name || original_name}
                 />
                 <p className={style.widthText}>{name || original_name}</p>
-                {{character}? <p className={style.widthText}>Character: {character}</p>:<p>We don't have any character.</p>}
+                {{ character } ? (
+                  <p className={style.widthText}>Character: {character}</p>
+                ) : (
+                  <p>We don't have any character.</p>
+                )}
               </div>
             )
           )}

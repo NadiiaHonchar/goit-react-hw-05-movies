@@ -8,16 +8,16 @@ export default function Reviews() {
   const query = queryId ? `movie/${queryId}/reviews` : "";
   const get = 1;
   const typeQuery = "details";
-  const newResults = GetRequest(query, get, typeQuery);  
+  const newResults = GetRequest(query, get, typeQuery);
 
   useEffect(() => {
-    setResults(newResults.results);    
+    setResults(newResults.results);
   }, [newResults]);
 
   return (
     <>
       <div>
-        {results && <h3>We don't have any reviews for this movie.</h3>}
+        {!results && <h3>We don't have any reviews for this movie.</h3>}
         {results &&
           results.map(({ author, content, id }) => (
             <div key={id}>

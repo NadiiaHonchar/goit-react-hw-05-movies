@@ -1,13 +1,18 @@
-import { useParams, useNavigate } from "react-router-dom";
+import {
+  useParams,
+  useNavigate,
+  Route,
+  Routes,
+  Link,  
+} from "react-router-dom";
 import GetRequest from "../../components/GetRequest";
 import { useState, useEffect } from "react";
 import Button from "../../components/Button";
 import style from "./MovieDetailsPage.module.css";
 import Cast from "../Cast/Cast";
 import Reviews from "../Reviews";
-import { Route, Routes, Link } from "react-router-dom";
 
-export default function MovieDetailsPage() {
+export default function MovieDetailsPage({ searchName }) {
   const { id: queryId } = useParams();
   const navigate = useNavigate();
   const [results, setResults] = useState(() => []);
@@ -15,13 +20,13 @@ export default function MovieDetailsPage() {
   const query = queryId ? `movie/${queryId}` : "";
   const get = 1;
   const typeQuery = "details";
+  const onLoadMore = () => navigate(-1);  
+
   const newResults = GetRequest(query, get, typeQuery);
   const { original_title, original_name, popularity, overview, backdrop_path } =
     results;
   const imageURL = "https://image.tmdb.org/t/p/w500";
   const posterUrl = backdrop_path ? `${imageURL}${backdrop_path}` : "";
-
-  const onLoadMore = () => navigate(-1);
 
   useEffect(() => {
     setResults(newResults);
