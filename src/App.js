@@ -11,13 +11,6 @@ export const NameContext = createContext();
 
 export default function App() {
   const [searchNameContext, setSearchNameContext] = useState("");
-  const [setValue, setSetValue] = useState(true);
-  const changeSetValue = (setValue) => {
-    setSearchNameContext("");
-    setSetValue("false");
-  };
-
-  console.log(setValue);
   const addSearchNameContext = (searchName) => {
     setSearchNameContext(searchName);
   };
@@ -31,7 +24,7 @@ export default function App() {
               index
               element={
                 <React.Suspense fallback={<h1>Loading User Route</h1>}>
-                  <HomePage changeSetValue={changeSetValue} />
+                  <HomePage addSearchNameContext={addSearchNameContext} />
                 </React.Suspense>
               }
             />
