@@ -3,13 +3,14 @@ import GetRequest from "../components/GetRequest";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
-export default function HomePage() {
+export default function HomePage({ changeSetValue }) {
   const [page, setPage] = useState(1);
   const [results, setResults] = useState(() => []);
   const query = "trending/all/day";
   const get = `page=${page}`;
   const typeQuery = "general";
   const newResults = GetRequest(query, get, typeQuery);
+  changeSetValue("false");
 
   useEffect(() => {
     setResults((prevResults) => [...prevResults, ...newResults]);

@@ -1,24 +1,11 @@
-import {
-  useParams,
-  useNavigate,  
-  Route,
-  Routes,
-  Link,  
-} from "react-router-dom";
+import { useParams, useNavigate, Route, Routes, Link } from "react-router-dom";
 import GetRequest from "../../components/GetRequest";
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "../../components/Button";
 import style from "./MovieDetailsPage.module.css";
-// import { eddContext } from "../MoviesPage";
-import {NameContext} from "../../App";
-// import {nameProvider} from '../MoviesPage';
-// import { userNameContext } from "../MoviesPage";
-// import Cast from "../Cast";
-// import Reviews from "../Reviews";
-// const MovieDetailsPage = React.lazy(() => import("./pages/MovieDetailsPage"));
+import { NameContext } from "../../App";
 const Cast = React.lazy(() => import("../Cast"));
 const Reviews = React.lazy(() => import("../Reviews"));
-
 
 export default function MovieDetailsPage() {
   const { id: queryId } = useParams();
@@ -29,24 +16,9 @@ export default function MovieDetailsPage() {
   const get = 1;
   const typeQuery = "details";
   const searchName = useContext(NameContext);
-  // console.log (searchName);
-  
-  // const { search, pathname } = useLocation();
-  // const onLoadMore = () => navigate(-1); 
-  // const onLoadMore = () => navigate("/");
-  // const onLoadMore = () => navigate(`/movies?query=${searchName}`);
-  const nav = searchName? (`/movies?query=${searchName}`) : ("/");
-  const onLoadMore = () => navigate(nav);
-  console.log (searchName);
 
-  // {
-  //   // query ? navigate("movies/") : navigate (" ../");
-  //   navigate (" /");
-  //   console.log('clik');
-  //   // navigate(-1);}
-  // }
-//   console.log('search',search);
-// console.log('pathname',pathname);
+  const nav = searchName ? `/movies?query=${searchName}` : "/";
+  const onLoadMore = () => navigate(nav);
 
   const newResults = GetRequest(query, get, typeQuery);
   const { original_title, original_name, popularity, overview, backdrop_path } =
@@ -95,12 +67,9 @@ export default function MovieDetailsPage() {
             </Link>
           </li>
         </ul>
-        {/* <Routes>
-          <Route path=":id/cast" element={<Cast />} />
-          <Route path=":id/reviews" element={<Reviews />} />
-        </Routes> */}
+
         <Routes>
-        <Route
+          <Route
             path=":id/cast"
             element={
               <React.Suspense fallback={<h1>Loading User Route</h1>}>
