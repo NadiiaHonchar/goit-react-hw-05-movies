@@ -10,6 +10,7 @@ export default function Searchbar({ onSubmit }) {
     const enteredName = e.currentTarget.value.toLowerCase();
     setSearchName(enteredName);
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
